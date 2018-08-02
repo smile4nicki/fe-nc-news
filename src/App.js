@@ -4,6 +4,7 @@ import Error400 from "./components/ErrorHandling/Error400";
 import Error401 from "./components/ErrorHandling/Error401";
 import Nav from "./components/Nav/Nav.jsx";
 import Articles from "./components/Articles/Articles.jsx";
+import Users from "./components/Users/Users.jsx";
 import { BrowserRouter as Router, Route } from "react-router-dom";
 // import logo from './logo.png';
 // import './App.css';
@@ -14,6 +15,7 @@ class App extends Component {
       <Router>
         <div className="App">
           <Route path="/" component={Nav} />
+          <Route path="/users" component={Users} />
           <Route path="/topics/:topic_id/articles" component={Articles} />
           <Route path="/404" component={Error404} />
           <Route path="/400" component={Error400} />

@@ -53,6 +53,7 @@ class Articles extends Component {
       this.fetchArticlesByTopicId();
   };
 
+  //sort articles by popularity
   fetchAllArticles = async () => {
     await api
       .getAllArticles()

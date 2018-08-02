@@ -1,0 +1,40 @@
+.users-title {
+  font-family: "Courier New", Courier, monospace;
+  font-size: 40px;
+  font-weight: bold;
+}
+
+.articles-userName {
+  font-family: "Sunflower", sans-serif;
+  font-size: 14px;
+  color: darkblue;
+  font-weight: bold;
+}
+
+.users-card {
+  box-sizing: content-box;
+  box-shadow: 0px 4px 8px 0px rgba(204, 6, 6, 0.2);
+  transition: 0.3s;
+  width: 40%;
+  margin: 12px;
+  float: center;
+  border-radius: 3em;
+}
+
+.users-card:hover {
+  box-shadow: 0 8px 16px 0 rgba(0, 0, 0, 0.2);
+}
+
+.users-card-container {
+  padding: 12px 20px;
+}
+
+.user-avatar {
+  display: block;
+
+  width: 40%;
+  height: 40%;
+  background: #e6e7ed;
+  -moz-border-radius: ;
+  -webkit-border-radius: 20px;
+}

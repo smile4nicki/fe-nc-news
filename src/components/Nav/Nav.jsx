@@ -38,10 +38,15 @@ class Articles extends Component {
               })}
             </div>
           </div>
+          <button className="login-btn">Login</button>
         </div>
       </div>
     );
   }
+
+  // <h2>Modal Login Form</h2>
+
+  // <button onclick="document.getElementById('id01').style.display='block'" style="width:auto;">Login</button>
 
   componentDidMount = async () => {
     this.fetchAllTopics();
