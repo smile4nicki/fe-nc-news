@@ -2,7 +2,6 @@ import React, { Component } from "react";
 import "../Nav/Nav.css";
 import { Redirect, Link } from "react-router-dom";
 import logo from "../logo.png";
-// import moment from "moment";
 import * as api from "../api";
 import propTypes from "prop-types";
 

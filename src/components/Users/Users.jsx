@@ -1,7 +1,6 @@
 import React, { Component } from "react";
 import "../Users/Users.css";
 import { Redirect, Link } from "react-router-dom";
-// import moment from "moment";
 import * as api from "../api";
 import propTypes from "prop-types";
 
@@ -18,15 +17,21 @@ class Users extends Component {
       <div>
         <h1 className="users-title">Users</h1>
         {this.state.users.map((user) => {
-          console.log(user);
+          const userId = user._id;
           return (
-            <div className="users-card">
-              <div className="users-card-container">
-                <img src={user.avatar_url} className="user-avatar" />
-                <p>{user.username}</p>
-                <p>{user.name}</p>
+            <Link to={`/users/${user.username}`}>
+              <div className="users-card" key={userId}>
+                <div className="users-card-container">
+                  <img
+                    src={user.avatar_url}
+                    className="user-avatar"
+                    alt="avatar"
+                  />
+                  <p className="username-font">{user.username}</p>
+                  <p className="name-font">{user.name}</p>
+                </div>
               </div>
-            </div>
+            </Link>
           );
         })}
       </div>
@@ -42,7 +47,6 @@ class Users extends Component {
       .getAllUsers()
       .then((res) => {
         const users = res.data.user;
-        console.log(res);
         this.setState({
           users: users
         });

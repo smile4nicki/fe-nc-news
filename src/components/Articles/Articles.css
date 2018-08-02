@@ -18,7 +18,6 @@ articles-title {
 
 .articles-card {
   box-shadow: 8px 4px 8px 4px rgba(204, 6, 6, 0.2);
-  transition: 0.2s;
   width: 100%;
   margin: 2px;
   float: center;
@@ -33,22 +32,3 @@ articles-title {
   font-size: 12px;
   font-weight: bold;
 }
-/* 
-.vote-down {
-  background-color: #0a0a0a;
-  border-radius: 1em;
-  color: white;
-  padding: 4px 4px;
-  font-size: 14px;
-  cursor: pointer;
-}
-
-.vote-up {
-  background-color: #d82121;
-  border-radius: 1em;
-  color: white;
-  padding: 4px 4px;
-  font-size: 14px;
-  margin: 6px 10px;
-  cursor: pointer;
-} */

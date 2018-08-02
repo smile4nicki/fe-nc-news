@@ -5,9 +5,10 @@ import Error401 from "./components/ErrorHandling/Error401";
 import Nav from "./components/Nav/Nav.jsx";
 import Articles from "./components/Articles/Articles.jsx";
 import Users from "./components/Users/Users.jsx";
+import User from "./components/Users/User.jsx";
+import Article from "./components/Articles/Article.jsx";
+import Comments from "./components/Comments/Comments.jsx";
 import { BrowserRouter as Router, Route } from "react-router-dom";
-// import logo from './logo.png';
-// import './App.css';
 
 class App extends Component {
   render() {
@@ -15,8 +16,11 @@ class App extends Component {
       <Router>
         <div className="App">
           <Route path="/" component={Nav} />
-          <Route path="/users" component={Users} />
-          <Route path="/topics/:topic_id/articles" component={Articles} />
+          <Route exact path="/users" component={Users} />
+          <Route path="/users/:username" component={User} />
+          <Route exact path="/topics/:topic_id/articles" component={Articles} />
+          <Route path="/articles/:article_id" component={Article} />
+          <Route path="/articles/:article_id/comments" component={Comments} />
           <Route path="/404" component={Error404} />
           <Route path="/400" component={Error400} />
           <Route path="/401" component={Error401} />

@@ -1,0 +1,58 @@
+.article-title {
+  font-family: "Sunflower", sans-serif;
+  font-size: 30px;
+  color: black;
+  font-weight: bold;
+  text-align: center;
+}
+
+.article-userName {
+  font-family: "Sunflower", sans-serif;
+  font-size: 14px;
+  color: darkblue;
+  font-weight: bold;
+  padding: 2em;
+}
+
+.article-card {
+  display: block;
+  box-sizing: content-box;
+  box-align: center;
+  box-shadow: 8px 4px 8px 4px rgba(204, 6, 6, 0.2);
+  transition: 0.2s;
+  width: 100%;
+  border-radius: 1em;
+}
+
+.article-card:hover {
+  box-shadow: 0 8px 16px 0 darkblue;
+}
+
+.article-body {
+  font-family: "Trebuchet MS", "Lucida Sans Unicode", "Lucida Grande",
+    "Lucida Sans", Arial, sans-serif;
+  width: 100%;
+  font-size: 18px;
+  color: black;
+  font-weight: bold;
+  text-align: center;
+}
+
+.vote-down {
+  background-color: #0a0a0a;
+  border-radius: 0.5em;
+  color: white;
+  padding: 5px 10px;
+  font-size: 25px;
+  cursor: pointer;
+}
+
+.vote-up {
+  background-color: #d82121;
+  border-radius: 0.5em;
+  color: white;
+  padding: 5px 10px;
+  font-size: 25px;
+  margin: 6px 10px;
+  cursor: pointer;
+}

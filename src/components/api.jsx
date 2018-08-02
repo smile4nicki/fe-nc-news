@@ -78,3 +78,9 @@ export const logout = (username) => {
 export const getAllUsers = () => {
   return axios.get(`https://nichola-northcoders-news.herokuapp.com/api/users`);
 };
+
+export const getUsersByUsername = (username) => {
+  return axios.get(
+    `https://nichola-northcoders-news.herokuapp.com/api/users/username`
+  );
+};
