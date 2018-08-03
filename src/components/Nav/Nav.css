@@ -44,6 +44,7 @@
 
 .dropdown-content a:hover {
   background-color: white;
+  width: auto;
 }
 
 .dropdown:hover .dropdown-content {
@@ -56,12 +57,10 @@
 
 .list-item {
   display: inline;
-  /* float: left; */
 }
 
 .login-btn {
   position: absolute;
-  top: 6em;
   right: 0;
   background-color: #222;
   color: white;
@@ -69,4 +68,8 @@
   font-size: 20px;
   border: none;
   cursor: pointer;
+}
+
+.dropdown:hover .dropdown-content {
+  display: block;
 }

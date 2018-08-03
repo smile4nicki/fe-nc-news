@@ -3,7 +3,6 @@ import "../Articles/Articles.css";
 import "../Comments/Comments.css";
 import moment from "moment";
 import * as api from "../api";
-// import Comment from "./Comment";
 import { Redirect } from "react-router-dom";
 import propTypes from "prop-types";
 
@@ -31,7 +30,7 @@ class Comments extends Component {
               type="submit"
               value="submit"
               className="comment-submit-button"
-              onClick={this.handleCommentClick}
+              onClick={this.handleCommentSubmitClick}
             />
           </form>
         </React.Fragment>
@@ -79,7 +78,7 @@ class Comments extends Component {
                 </button>
                 <button
                   className="comment-delete-button"
-                  onClick={() => this.handleCommentDelete(commentId)}
+                  onClick={() => this.handleCommentDeleteClick(commentId)}
                 >
                   Delete
                 </button>
@@ -95,6 +94,7 @@ class Comments extends Component {
     this.fetchCommentsByArticleId();
   };
 
+  //commets sorted by most
   fetchCommentsByArticleId = async () => {
     const articleId = this.props.match.params.article_id;
     await api
@@ -114,10 +114,10 @@ class Comments extends Component {
   };
 
   handleVoteCommentClick = (direction, commentToVote) => {
-    this.refs.btnCommentUp.setAttribute("disabled", "disabled");
+    console.log(this.refs);
+    this.refs.btnCommentUp.setAttribute("disabled", true);
     this.refs.btnCommentDown.setAttribute("disabled", "disabled");
     api.voteOnComment(commentToVote._id, direction);
-    console.log(direction);
     const voteChange = direction === "up" ? 1 : -1;
     const updatedComments = this.state.comments.map((comment) => {
       if (comment === commentToVote) {
@@ -128,11 +128,7 @@ class Comments extends Component {
       }
       return comment;
     });
-    this.setState({ comments: updatedComments }).catch((err) => {
-      this.setState({
-        badRequest: true
-      });
-    });
+    this.setState({ comments: updatedComments });
   };
 
   handleCommentChange = (event) => {

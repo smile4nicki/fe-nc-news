@@ -11,15 +11,16 @@ class User extends Component {
   };
 
   render() {
-    console.log(this.state);
     const user = this.state.user;
     return this.state.badRequest ? (
       <Redirect to="/400" />
     ) : (
       <div className="user-card" key={user._id}>
-        <img src={user.avatar_url} className="user-avatar" alt="avatar" />
-        <p className="user-username">{user.username}</p>
-        <p className="user-name">{user.name}</p>
+        <div className="user-card-container">
+          <img src={user.avatar_url} className="user-avatar" alt="avatar" />
+          <p className="username-font">{user.username}</p>
+          <p className="name-font">{user.name}</p>
+        </div>
       </div>
     );
   }

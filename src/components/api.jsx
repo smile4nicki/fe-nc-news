@@ -59,12 +59,13 @@ export const deleteComment = (commentId) => {
   );
 };
 
-export const login = (username, password) => {
+export const login = (username) => {
   return axios
     .post(
       `https://nichola-northcoders-news.herokuapp.com/api/users/${username}`
     )
     .then((res) => {
+      console.log(res);
       return res.data.user;
     });
 };
@@ -81,6 +82,6 @@ export const getAllUsers = () => {
 
 export const getUsersByUsername = (username) => {
   return axios.get(
-    `https://nichola-northcoders-news.herokuapp.com/api/users/username`
+    `https://nichola-northcoders-news.herokuapp.com/api/users/${username}`
   );
 };

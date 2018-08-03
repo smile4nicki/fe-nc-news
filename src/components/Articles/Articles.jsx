@@ -18,6 +18,7 @@ class Articles extends Component {
     ) : (
       <div>
         {this.state.articles.map((article) => {
+          // console.log(article.created_by.username);
           const articleId = article._id;
           return (
             <div className="articles-card" key={articleId}>

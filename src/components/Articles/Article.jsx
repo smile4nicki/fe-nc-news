@@ -12,6 +12,7 @@ class Article extends Component {
 
   render() {
     const article = this.state.article;
+    console.log(article);
     return this.state.badRequest ? (
       <Redirect to="/400" />
     ) : (

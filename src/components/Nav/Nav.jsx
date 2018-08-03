@@ -5,47 +5,53 @@ import logo from "../logo.png";
 import * as api from "../api";
 import propTypes from "prop-types";
 
-class Articles extends Component {
+class Nav extends Component {
   state = {
+    username: "",
     topics: [],
-    users: [],
     err404: false
   };
 
   render() {
+    console.log(this.props);
     return this.state.err404 ? (
       <Redirect to="/404" />
     ) : (
       <div className="nav-card">
-        <div className="nav-card-container">
-          <Link to="/">
-            <img src={logo} className="nav-logo" alt="logo" />
-          </Link>
-          <div className="dropdown">
-            <button className="dropbtn">
-              <i className="fa fa-bars" /> Topics
-            </button>
-            <div className="dropdown-content">
-              {this.state.topics.map((topic) => {
-                return (
+        <Link to="/">
+          <img src={logo} className="nav-logo" alt="logo" />
+        </Link>
+        <div className="dropdown">
+          <button className="dropbtn">
+            <i className="fa fa-bars" /> Topics
+          </button>
+          <div className="dropdown-content">
+            {this.state.topics.map((topic) => {
+              return (
+                <div className="nav-card-container" key={topic._id}>
                   <Link to={`/topics/${topic._id}/articles`}>
                     <ul>
                       <li className="list-item">{topic.slug}</li>
                     </ul>
                   </Link>
-                );
-              })}
-            </div>
+                </div>
+              );
+            })}
           </div>
           <button className="login-btn">Login</button>
+          {/* <div className="dropdown-content">
+            {this.state.users.map((user) => {
+              <Link to={`/users/${username}`}>
+                <ul>
+                  <li className="list-item">{user.userame}</li>
+                </ul>
+              </Link>;
+            })}
+          </div> */}
         </div>
       </div>
     );
   }
-
-  // <h2>Modal Login Form</h2>
-
-  // <button onclick="document.getElementById('id01').style.display='block'" style="width:auto;">Login</button>
 
   componentDidMount = async () => {
     this.fetchAllTopics();
@@ -66,10 +72,17 @@ class Articles extends Component {
         });
       });
   };
+
+  handleLogoutClick = (event) => {
+    event.preventDefault();
+    api.logout({ userName: this.state.newUserName }).then((activeUser) => {
+      this.props.handleLogOut(activeUser);
+    });
+  };
 }
 
-Articles.propTypes = {
+Nav.propTypes = {
   componentDidMount: propTypes.func
 };
 
-export default Articles;
+export default Nav;
