@@ -1,11 +1,13 @@
 .comments-card {
+  position: relative;
+  justify-content: space-between;
   display: block;
   box-sizing: content-box;
   box-align: center;
   box-shadow: 8px 4px 8px 4px rgba(204, 6, 6, 0.2);
   transition: 0.2s;
   width: 100%;
-  border-radius: 1em;
+  border-radius: 0.75em;
   margin-bottom: 0.5em;
 }
 
@@ -16,7 +18,7 @@
 .comments-votes {
   font-family: "Scada", sans-serif;
   font-size: 14px;
-  color: red;
+  color: #da2c43;
   font-weight: bold;
 }
 
@@ -39,7 +41,7 @@
 }
 
 .comment-submit-button {
-  background-color: #d82121;
+  background-color: #da2c43;
   border-radius: 1em;
   color: white;
   float: right;
@@ -48,15 +50,15 @@
 }
 
 .comment-delete-button {
+  position: absolute;
   background-color: #0a0a0a;
   border-radius: 1em;
   color: white;
-  padding: 4px 4px;
-  text-align: right;
+  padding: 0.5em;
   text-decoration: none;
-  float: right;
-  font-size: 14px;
-  margin: 6px 30px;
+  bottom: 8px;
+  right: 16px;
+  font-size: 0.75em;
   cursor: pointer;
 }
 

@@ -4,6 +4,8 @@ import * as api from "../api";
 import { Redirect, Link } from "react-router-dom";
 import propTypes from "prop-types";
 import moment from "moment";
+import Loading from "../Loading.jsx";
+// import Votes from "../Votes.jsx";
 
 class Article extends Component {
   state = {
@@ -16,7 +18,9 @@ class Article extends Component {
     return this.state.badRequest ? (
       <Redirect to="/400" />
     ) : !this.state.article.created_by ? (
-      <p>Loading</p>
+      <Loading name="myLoader">
+        <span>Loading...</span>
+      </Loading>
     ) : (
       <div className="article-card" key={article._id}>
         <p className="article-title">{article.title}</p>
@@ -28,22 +32,7 @@ class Article extends Component {
           - {moment(moment(article.created_at)).fromNow()}
         </p>
         <p className="article-vote">Votes: {article.votes}</p>
-        <button
-          ref="btnArticleUp"
-          className="vote-up"
-          label="up"
-          onClick={() => this.handleVoteArticleClick("up")}
-        >
-          <i className="far fa-smile" />
-        </button>
-        <button
-          ref="btnArticleDown"
-          className="vote-down"
-          label="down"
-          onClick={() => this.handleVoteArticleClick("down")}
-        >
-          <i className="far fa-angry" />
-        </button>
+        {/* <Votes votes={article.votes} article_id={article._id} /> */}
       </div>
     );
   }
@@ -68,30 +57,9 @@ class Article extends Component {
         });
       });
   };
-
-  handleVoteArticleClick = (direction) => {
-    const { article } = this.state;
-    this.refs.btnArticleUp.setAttribute("disabled", "disabled");
-    this.refs.btnArticleDown.setAttribute("disabled", "disabled");
-    let voteCount = this.state.article.votes;
-    api.voteOnArticle(article._id, direction).then((res) => {
-      if (direction === "up") {
-        voteCount++;
-      } else {
-        voteCount--;
-      }
-      this.setState({
-        article: {
-          ...this.state.article,
-          votes: voteCount
-        }
-      });
-    });
-  };
 }
 
 Article.propTypes = {
-  handleVoteArticleClick: propTypes.func,
   badRequest: propTypes.bool
 };
 

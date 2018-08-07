@@ -31,13 +31,11 @@
 }
 
 .user-avatar {
+  align-content: center;
   display: block;
-  width: 30%;
-  height: 30%;
-  background: #e6e7ed;
+  margin-left: auto;
+  margin-right: auto;
   border-radius: 5.5em;
-  border-color: red;
-  box-align: center;
 }
 
 .username-font {

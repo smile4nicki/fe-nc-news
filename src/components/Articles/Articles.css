@@ -31,7 +31,7 @@
 }
 
 .vote-up {
-  background-color: #d82121;
+  background-color: #da2c43;
   border-radius: 1em;
   color: white;
   padding: 4px 12px;
@@ -43,8 +43,8 @@
 .article-card {
   box-shadow: 8px 4px 8px 4px rgba(204, 6, 6, 0.2);
   transition: 0.2s;
-  width: 1420px;
-  margin: 2px;
+  width: 100%;
+  margin: 1px;
   float: center;
   border-radius: 0.5em;
 }
@@ -75,7 +75,7 @@
 .article-card {
   box-shadow: 8px 4px 8px 4px rgba(204, 6, 6, 0.2);
   transition: 0.2s;
-  width: 1430px;
+  width: 100%;
   margin: 6px;
   float: center;
 }
@@ -85,9 +85,8 @@
 }
 
 .article-body {
-  padding: 2em;
+  padding: 3em;
   font-family: "Cantata One", serif;
-  width: 1320px;
   font-size: 18px;
   color: black;
   text-align: center;
@@ -104,6 +103,6 @@
 .article-vote {
   font-family: "Scada", sans-serif;
   font-size: 14px;
-  color: red;
+  color: #da2c43;
   font-weight: bold;
 }
