@@ -1,8 +1,9 @@
 import React, { Component } from "react";
-import "../Articles/Article.css";
+import "../Articles/Articles.css";
 import * as api from "../api";
-import { Redirect } from "react-router-dom";
+import { Redirect, Link } from "react-router-dom";
 import propTypes from "prop-types";
+import moment from "moment";
 
 class Article extends Component {
   state = {
@@ -12,14 +13,20 @@ class Article extends Component {
 
   render() {
     const article = this.state.article;
-    console.log(article);
     return this.state.badRequest ? (
       <Redirect to="/400" />
+    ) : !this.state.article.created_by ? (
+      <p>Loading</p>
     ) : (
       <div className="article-card" key={article._id}>
         <p className="article-title">{article.title}</p>
         <p className="article-body">{article.body}</p>
-        <p className="article-username">{article.created_by}</p>
+        <p className="article-username">
+          <Link to={`/users/${article.created_by.username}`}>
+            {article.created_by.username}
+          </Link>
+          - {moment(moment(article.created_at)).fromNow()}
+        </p>
         <p className="article-vote">Votes: {article.votes}</p>
         <button
           ref="btnArticleUp"

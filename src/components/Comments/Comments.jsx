@@ -3,7 +3,7 @@ import "../Articles/Articles.css";
 import "../Comments/Comments.css";
 import moment from "moment";
 import * as api from "../api";
-import { Redirect } from "react-router-dom";
+import { Redirect, Link } from "react-router-dom";
 import propTypes from "prop-types";
 
 class Comments extends Component {
@@ -36,29 +36,16 @@ class Comments extends Component {
         </React.Fragment>
 
         {this.state.comments.map((comment) => {
-          const commentId = comment._id;
-          let username = ""; //this will from active user don't hardcode!
-          if (comment.created_by === "5b48464154670a3395b00d1d") {
-            username = "tickle122";
-          } else if (comment.created_by === "5b48464154670a3395b00d1e") {
-            username = "grumpy19";
-          } else if (comment.created_by === "5b48464154670a3395b00d1f") {
-            username = "happyamy2016";
-          } else if (comment.created_by === "5b48464154670a3395b00d20") {
-            username = "cooljmessy";
-          } else if (comment.created_by === "5b48464154670a3395b00d21") {
-            username = "weegembump";
-          } else if (comment.created_by === "5b48464154670a3395b00d22") {
-            username = "jessjelly";
-          }
           return (
             <div className="comments-card" key={comment._id}>
               <div className="comments-card-container">
-                <p className="article-userName">
-                  {username} -
-                  {moment(comment.created_at).fromNow()}
-                </p>
                 <p className="comments-body">{comment.body}</p>
+                <p className="article-username">
+                  <Link to={`/users/${comment.created_by.username}`}>
+                    {comment.created_by.username}
+                  </Link>
+                  - {moment(comment.created_at).fromNow()}
+                </p>
                 <p className="comments-votes">Votes: {comment.votes}</p>
                 <button
                   ref="btnCommentUp"
@@ -78,7 +65,7 @@ class Comments extends Component {
                 </button>
                 <button
                   className="comment-delete-button"
-                  onClick={() => this.handleCommentDeleteClick(commentId)}
+                  onClick={() => this.handleCommentDeleteClick(comment._id)}
                 >
                   Delete
                 </button>
@@ -94,15 +81,17 @@ class Comments extends Component {
     this.fetchCommentsByArticleId();
   };
 
-  //commets sorted by most
   fetchCommentsByArticleId = async () => {
     const articleId = this.props.match.params.article_id;
     await api
       .getCommentsByArticleId(articleId)
       .then((res) => {
         const comment = res.data.comment;
+        const topComments = [...comment].sort((a, b) => {
+          return b.votes - a.votes;
+        });
         this.setState({
-          comments: comment,
+          comments: topComments,
           votes: comment.votes
         });
       })
@@ -114,12 +103,12 @@ class Comments extends Component {
   };
 
   handleVoteCommentClick = (direction, commentToVote) => {
-    console.log(this.refs);
-    this.refs.btnCommentUp.setAttribute("disabled", true);
+    this.refs.btnCommentUp.setAttribute("disabled", "disabled");
     this.refs.btnCommentDown.setAttribute("disabled", "disabled");
     api.voteOnComment(commentToVote._id, direction);
     const voteChange = direction === "up" ? 1 : -1;
     const updatedComments = this.state.comments.map((comment) => {
+      console.log(comment);
       if (comment === commentToVote) {
         return {
           ...comment,

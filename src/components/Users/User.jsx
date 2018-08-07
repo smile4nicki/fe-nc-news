@@ -1,6 +1,7 @@
 import React, { Component } from "react";
 import "../Users/User.css";
 import * as api from "../api";
+import Comments from "../Comments/Comments.jsx";
 import { Redirect } from "react-router-dom";
 // import propTypes from "prop-types";
 

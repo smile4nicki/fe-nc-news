@@ -65,7 +65,6 @@ export const login = (username) => {
       `https://nichola-northcoders-news.herokuapp.com/api/users/${username}`
     )
     .then((res) => {
-      console.log(res);
       return res.data.user;
     });
 };

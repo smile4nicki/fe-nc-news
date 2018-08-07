@@ -7,13 +7,11 @@ import propTypes from "prop-types";
 
 class Nav extends Component {
   state = {
-    username: "",
     topics: [],
     err404: false
   };
 
   render() {
-    console.log(this.props);
     return this.state.err404 ? (
       <Redirect to="/404" />
     ) : (
@@ -40,16 +38,16 @@ class Nav extends Component {
           </div>
           <button className="login-btn">Login</button>
           {/* <div className="dropdown-content">
-            {this.state.users.map((user) => {
-              <Link to={`/users/${username}`}>
+            <Users 
+              <Link to={`/users/${user.username}`}>
                 <ul>
                   <li className="list-item">{user.userame}</li>
                 </ul>
               </Link>;
-            })}
-          </div> */}
+            })} */}
         </div>
       </div>
+      // </div>
     );
   }
 

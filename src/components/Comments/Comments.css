@@ -14,16 +14,16 @@
 }
 
 .comments-votes {
-  color: #000000;
-  font-family: Verdana, Geneva, Tahoma, sans-serif;
+  font-family: "Scada", sans-serif;
+  font-size: 14px;
+  color: red;
   font-weight: bold;
 }
 
-.comment-header {
-  font-family: "Sunflower", sans-serif;
-  font-size: 20px;
+.comments-body {
+  font-family: "Cantata One", serif;
+  font-size: 18px;
   color: black;
-  font-weight: bold;
   text-align: left;
 }
 
@@ -50,7 +50,6 @@
 .comment-delete-button {
   background-color: #0a0a0a;
   border-radius: 1em;
-  border: none;
   color: white;
   padding: 4px 4px;
   text-align: right;

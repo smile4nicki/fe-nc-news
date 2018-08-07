@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-// import "../Comments/Comments.css";
+import "../Comments/Comments.css";
 import "../Articles/Articles.css";
 import { Link, Redirect } from "react-router-dom";
 import moment from "moment";
@@ -18,22 +18,21 @@ class Articles extends Component {
     ) : (
       <div>
         {this.state.articles.map((article) => {
-          // console.log(article.created_by.username);
           const articleId = article._id;
           return (
             <div className="articles-card" key={articleId}>
               <div className="articles-card-container">
                 <Link to={`/articles/${articleId}/comments`}>
                   <p className="articles-title">{article.title}</p>
-                  <p className="articles-userName">
+                  <p className="article-username">
                     {article.created_by.username} -
                     {moment(moment(article.created_at)).fromNow()}
                   </p>
-                  <p className="articles-comments">
+                  <p className="article-comments">
                     Comments({article.comments})
                   </p>
                 </Link>
-                <p className="articles-vote">Votes: {article.votes}</p>
+                <p className="article-vote">Votes: {article.votes}</p>
               </div>
             </div>
           );

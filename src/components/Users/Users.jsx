@@ -11,6 +11,7 @@ class Users extends Component {
   };
 
   render() {
+    console.log(this);
     return this.state.err404 ? (
       <Redirect to="/404" />
     ) : (
@@ -37,7 +38,6 @@ class Users extends Component {
       </div>
     );
   }
-
   componentDidMount = async () => {
     this.fetchAllUsers();
   };
@@ -60,7 +60,8 @@ class Users extends Component {
 }
 
 Users.propTypes = {
-  componentDidMount: propTypes.func
+  componentDidMount: propTypes.func,
+  fetchAllUsers: propTypes.func
 };
 
 export default Users;
