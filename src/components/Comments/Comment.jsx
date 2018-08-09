@@ -20,7 +20,9 @@ class Comment extends Component {
       <div className="comments-card" key={comment.commentId}>
         <p className="comments-body">{comment.commentBody}</p>
         <p className="article-username">
-          <Link to={`/users/${comment.username}`}>{comment.username}</Link>
+          <Link to={`/users/${comment.username}`}>
+            {comment.commentUsername}
+          </Link>
           - {moment(moment(this.props.created_at)).fromNow()}
         </p>
         <p className="comments-votes">Votes: {comment.votes}</p>

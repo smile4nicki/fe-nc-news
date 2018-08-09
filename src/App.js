@@ -19,13 +19,21 @@ class App extends Component {
     return (
       <Router>
         <div className="App">
-          <Nav />
+          <Nav
+            handleActiveUser={this.handleActiveUser}
+            activeUser={this.state.activeUser}
+          />
           <Route exact path="/" component={Articles} />
           <Route exact path="/users" component={Users} />
           <Route path="/users/:username" component={User} />
           <Route exact path="/topics/:topic_id/articles" component={Articles} />
           <Route path="/articles/:article_id" component={Article} />
-          <Route path="/articles/:article_id/comments" component={Comments} />
+          <Route
+            path="/articles/:article_id"
+            render={({ match }) => (
+              <Comments activeUser={this.state.activeUser} match={match} />
+            )}
+          />
           <Route path="/404" component={Error404} />
           <Route path="/400" component={Error400} />
           <Route path="/401" component={Error401} />
@@ -34,9 +42,8 @@ class App extends Component {
     );
   }
   handleActiveUser = (user) => {
-    console.log(user);
     this.setState({
-      activerUser: user
+      activeUser: user
     });
   };
 }

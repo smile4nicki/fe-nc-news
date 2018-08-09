@@ -11,7 +11,6 @@ class Login extends Component {
   };
 
   render() {
-    console.log(this.state);
     return this.state.err404 ? (
       <Redirect to="/404" />
     ) : (
@@ -39,10 +38,6 @@ class Login extends Component {
     );
   }
 
-  componentDidMount = async () => {
-    this.login();
-  };
-
   handleUsernameChange = (event) => {
     this.setState({
       username: event.target.value
@@ -51,21 +46,14 @@ class Login extends Component {
 
   handleLoginClick = (event) => {
     event.preventDefault();
-    api.login({
-      username: this.state.username
-    });
+    api
+      .login({
+        username: this.state.username
+      })
+      .then((activeUser) => {
+        this.props.handleActiveUser(activeUser);
+      });
   };
-  // .then((activeUser) => {
-  //   console.log(activeUser);
-  //   this.props.handleActiveUser(activeUser)
-  // })
-
-  // handleLogoutClick = (event) => {
-  //   event.preventDefault();
-  //   api.logout({ userName: this.state.username }).then((activeUser) => {
-  //     this.props.handleLogOut(activeUser);
-  //   });
-  // };
 }
 
 export default Login;

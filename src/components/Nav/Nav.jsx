@@ -5,6 +5,7 @@ import logo from "../logo.png";
 import * as api from "../api";
 import propTypes from "prop-types";
 import Login from "./Login";
+import Logout from "./Logout";
 
 class Nav extends Component {
   state = {
@@ -39,7 +40,14 @@ class Nav extends Component {
             })}
           </div>
         </div>
-        <Login handleActiveUser={this.handleActiveUser} />
+        <React.Fragment>
+          <p className="logged-in-user">{this.props.activeUser.username}</p>
+          {!this.props.activeUser.username ? (
+            <Login handleActiveUser={this.props.handleActiveUser} />
+          ) : (
+            <Logout activeUser={this.props.activeUser} />
+          )}
+        </React.Fragment>
       </div>
     );
   }

@@ -1,20 +1,21 @@
 .user-card {
+  justify-content: space-between;
   box-sizing: content-box;
   transition: 0.2s;
   margin: 5em auto 5em auto;
   max-width: 80%;
   border-radius: 1em;
-  background-color: #2b2b2b;
   text-align: center;
 }
 
 .user-card-container {
   display: flex;
-  padding: 8em;
   justify-content: center;
   align-items: center;
   text-align: center;
-  max-width: 50%;
+  max-width: 100%;
+  border-radius: 1em;
+  background-color: #2b2b2b;
 }
 
 .user-card:hover {
@@ -22,8 +23,8 @@
 }
 
 .user-avatar {
-  width: 50%;
-  height: 50%;
+  width: 25%;
+  height: 25%;
   background: #e6e7ed;
   border-radius: 12em;
 }
@@ -32,7 +33,4 @@
   padding: 0.75em;
   color: white;
   text-align: center;
-}
-.user-articles {
-  margin: 1px;
 }

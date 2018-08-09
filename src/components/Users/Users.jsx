@@ -3,7 +3,6 @@ import "../Users/Users.css";
 import { Redirect, Link } from "react-router-dom";
 import * as api from "../api";
 import propTypes from "prop-types";
-import UserContext from "../../Context";
 
 class Users extends Component {
   state = {
@@ -16,26 +15,24 @@ class Users extends Component {
       <Redirect to="/404" />
     ) : (
       <div>
-        <UserContext.Provider>
-          <h1 className="users-title">Users</h1>
-          {this.state.users.map((user) => {
-            const userId = user._id;
-            return (
-              <Link to={`/users/${user.username}`}>
-                <div className="users-card" key={userId}>
-                  <div className="users-card-container">
-                    <img
-                      src={user.avatar_url}
-                      className="user-avatar"
-                      alt="avatar"
-                    />
-                    <p className="username-font">{user.username}</p>
-                  </div>
+        <h1 className="users-title">Users</h1>
+        {this.state.users.map((user) => {
+          const userId = user._id;
+          return (
+            <Link to={`/users/${user.username}`}>
+              <div className="users-card" key={userId}>
+                <div className="users-card-container">
+                  <img
+                    src={user.avatar_url}
+                    className="user-avatar"
+                    alt="avatar"
+                  />
+                  <p className="username-font">{user.username}</p>
                 </div>
-              </Link>
-            );
-          })}
-        </UserContext.Provider>
+              </div>
+            </Link>
+          );
+        })}
       </div>
     );
   }

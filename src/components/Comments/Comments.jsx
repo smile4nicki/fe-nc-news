@@ -42,7 +42,7 @@ class Comments extends Component {
               <Comment
                 commentId={comment._id}
                 commentBody={comment.body}
-                username={comment.created_by.username}
+                commentUsername={comment.created_by.username}
                 created_at={comment.created_at}
                 votes={comment.votes}
               />
@@ -89,7 +89,7 @@ class Comments extends Component {
     event.preventDefault();
     let comment = {
       body: this.state.newComment,
-      created_by: "5b48464154670a3395b00d1d" //dont hard code this will come from active user!
+      created_by: this.props.activeUser.username
     };
     this.setState({
       comments: [...this.state.comments, comment]

@@ -4,7 +4,6 @@ import * as api from "../api";
 import { Redirect, Link } from "react-router-dom";
 import propTypes from "prop-types";
 import moment from "moment";
-import Loading from "../Loading.jsx";
 import Votes from "../Votes/Votes.jsx";
 
 class Article extends Component {
@@ -18,9 +17,7 @@ class Article extends Component {
     return this.state.badRequest ? (
       <Redirect to="/400" />
     ) : !this.state.article.created_by ? (
-      <Loading name="myLoader">
-        <span>Loading...</span>
-      </Loading>
+      <p>Loading...</p>
     ) : (
       <div className="article-card" key={article._id}>
         <p className="article-title">{article.title}</p>
@@ -60,7 +57,8 @@ class Article extends Component {
 }
 
 Article.propTypes = {
-  badRequest: propTypes.bool
+  badRequest: propTypes.bool,
+  articleId: propTypes.string
 };
 
 export default Article;

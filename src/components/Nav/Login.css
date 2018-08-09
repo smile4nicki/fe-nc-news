@@ -1,3 +1,22 @@
+.logout-btn {
+  position: absolute;
+  right: 0;
+  top: 130px;
+  background-color: #222;
+  color: white;
+  padding: 16px;
+  font-size: 20px;
+  border: none;
+  cursor: pointer;
+}
+
+.logged-in-user {
+  position: relative;
+  right: 0;
+  color: #da2c43;
+  margin: auto 1em;
+}
+
 .login-container {
   position: absolute;
   right: 0px;

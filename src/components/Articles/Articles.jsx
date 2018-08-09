@@ -92,7 +92,7 @@ class Articles extends Component {
 }
 
 Articles.propTypes = {
-  componentDidMount: propTypes.func
+  topicId: propTypes.string
 };
 
 export default Articles;
