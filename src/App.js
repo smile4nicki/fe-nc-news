@@ -11,6 +11,10 @@ import Comments from "./components/Comments/Comments.jsx";
 import { BrowserRouter as Router, Route } from "react-router-dom";
 
 class App extends Component {
+  state = {
+    activeUser: {}
+  };
+
   render() {
     return (
       <Router>
@@ -29,6 +33,12 @@ class App extends Component {
       </Router>
     );
   }
+  handleActiveUser = (user) => {
+    console.log(user);
+    this.setState({
+      activerUser: user
+    });
+  };
 }
 
 export default App;

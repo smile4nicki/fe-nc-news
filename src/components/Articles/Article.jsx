@@ -5,7 +5,7 @@ import { Redirect, Link } from "react-router-dom";
 import propTypes from "prop-types";
 import moment from "moment";
 import Loading from "../Loading.jsx";
-// import Votes from "../Votes.jsx";
+import Votes from "../Votes/Votes.jsx";
 
 class Article extends Component {
   state = {
@@ -32,7 +32,7 @@ class Article extends Component {
           - {moment(moment(article.created_at)).fromNow()}
         </p>
         <p className="article-vote">Votes: {article.votes}</p>
-        {/* <Votes votes={article.votes} article_id={article._id} /> */}
+        <Votes votes={article.votes} articleId={article._id} />
       </div>
     );
   }

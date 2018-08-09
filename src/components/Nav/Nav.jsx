@@ -4,9 +4,11 @@ import { Redirect, Link } from "react-router-dom";
 import logo from "../logo.png";
 import * as api from "../api";
 import propTypes from "prop-types";
+import Login from "./Login";
 
 class Nav extends Component {
   state = {
+    activeUser: {},
     topics: [],
     err404: false
   };
@@ -36,18 +38,9 @@ class Nav extends Component {
               );
             })}
           </div>
-          <button className="login-btn">Login</button>
-          {/* <div className="dropdown-content">
-            <Users 
-              <Link to={`/users/${user.username}`}>
-                <ul>
-                  <li className="list-item">{user.userame}</li>
-                </ul>
-              </Link>;
-            })} */}
         </div>
+        <Login handleActiveUser={this.handleActiveUser} />
       </div>
-      // </div>
     );
   }
 
@@ -69,13 +62,6 @@ class Nav extends Component {
           err404: true
         });
       });
-  };
-
-  handleLogoutClick = (event) => {
-    event.preventDefault();
-    api.logout({ userName: this.state.newUserName }).then((activeUser) => {
-      this.props.handleLogOut(activeUser);
-    });
   };
 }
 

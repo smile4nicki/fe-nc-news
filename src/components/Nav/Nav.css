@@ -59,17 +59,6 @@
   display: inline;
 }
 
-.login-btn {
-  position: absolute;
-  right: 0;
-  background-color: #222;
-  color: white;
-  padding: 16px;
-  font-size: 20px;
-  border: none;
-  cursor: pointer;
-}
-
 .dropdown:hover .dropdown-content {
   display: block;
 }

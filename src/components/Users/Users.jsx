@@ -3,6 +3,7 @@ import "../Users/Users.css";
 import { Redirect, Link } from "react-router-dom";
 import * as api from "../api";
 import propTypes from "prop-types";
+import UserContext from "../../Context";
 
 class Users extends Component {
   state = {
@@ -11,30 +12,30 @@ class Users extends Component {
   };
 
   render() {
-    console.log(this);
     return this.state.err404 ? (
       <Redirect to="/404" />
     ) : (
       <div>
-        <h1 className="users-title">Users</h1>
-        {this.state.users.map((user) => {
-          const userId = user._id;
-          return (
-            <Link to={`/users/${user.username}`}>
-              <div className="users-card" key={userId}>
-                <div className="users-card-container">
-                  <img
-                    src={user.avatar_url}
-                    className="user-avatar"
-                    alt="avatar"
-                  />
-                  <p className="username-font">{user.username}</p>
-                  <p className="name-font">{user.name}</p>
+        <UserContext.Provider>
+          <h1 className="users-title">Users</h1>
+          {this.state.users.map((user) => {
+            const userId = user._id;
+            return (
+              <Link to={`/users/${user.username}`}>
+                <div className="users-card" key={userId}>
+                  <div className="users-card-container">
+                    <img
+                      src={user.avatar_url}
+                      className="user-avatar"
+                      alt="avatar"
+                    />
+                    <p className="username-font">{user.username}</p>
+                  </div>
                 </div>
-              </div>
-            </Link>
-          );
-        })}
+              </Link>
+            );
+          })}
+        </UserContext.Provider>
       </div>
     );
   }

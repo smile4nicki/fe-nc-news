@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 import "../Users/User.css";
 import * as api from "../api";
-import Comments from "../Comments/Comments.jsx";
+import Articles from "../Articles/Articles.jsx";
 import { Redirect } from "react-router-dom";
 // import propTypes from "prop-types";
 
@@ -20,7 +20,9 @@ class User extends Component {
         <div className="user-card-container">
           <img src={user.avatar_url} className="user-avatar" alt="avatar" />
           <p className="username-font">{user.username}</p>
-          <p className="name-font">{user.name}</p>
+        </div>
+        <div className="user-articles">
+          <Articles username={this.props.username} />
         </div>
       </div>
     );

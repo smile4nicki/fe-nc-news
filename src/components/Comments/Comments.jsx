@@ -68,8 +68,7 @@ class Comments extends Component {
           return moment(b.created_at) - moment(a.created_at);
         });
         this.setState({
-          comments: topComments,
-          votes: comment.votes
+          comments: topComments
         });
       })
       .catch((err) => {

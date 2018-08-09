@@ -4,11 +4,11 @@ import * as api from "../api";
 import { Redirect, Link } from "react-router-dom";
 import propTypes from "prop-types";
 import moment from "moment";
-import Loading from "../Loading.jsx";
+import Votes from "../Votes/Votes.jsx";
+// import User from "../Users/User.jsx";
 
 class Comment extends Component {
   state = {
-    comment: {},
     badRequest: false
   };
 
@@ -24,6 +24,7 @@ class Comment extends Component {
           - {moment(moment(this.props.created_at)).fromNow()}
         </p>
         <p className="comments-votes">Votes: {comment.votes}</p>
+        <Votes votes={comment.votes} commentId={comment.commentId} />
         <button
           className="comment-delete-button"
           onClick={() => this.handleCommentDeleteClick(comment.commentId)}

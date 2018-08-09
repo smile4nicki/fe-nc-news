@@ -106,3 +106,7 @@
   color: #da2c43;
   font-weight: bold;
 }
+
+a {
+  text-decoration: none;
+}
