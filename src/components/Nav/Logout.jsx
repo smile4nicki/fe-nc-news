@@ -7,7 +7,7 @@ class Logout extends Component {
         {console.log("hi!")}
         <button
           className="logout-btn"
-          onClick={() => this.props.handleLogoutClick}
+          onClick={() => this.props.handleLogOutClick()}
         >
           Logout
         </button>

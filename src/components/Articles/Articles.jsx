@@ -29,7 +29,8 @@ class Articles extends Component {
                     {moment(moment(article.created_at)).fromNow()}
                   </p>
                   <p className="article-comments">
-                    Comments({article.comments})
+                    Comments(
+                    {article.comments})
                   </p>
                 </Link>
                 <p className="article-vote">Votes: {article.votes}</p>

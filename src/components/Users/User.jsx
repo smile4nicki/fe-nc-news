@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 import "../Users/User.css";
 import * as api from "../api";
-import Articles from "../Articles/Articles.jsx";
+// import Articles from "../Articles/Articles.jsx";
 import { Redirect } from "react-router-dom";
 import propTypes from "prop-types";
 
@@ -12,9 +12,10 @@ class User extends Component {
   };
 
   render() {
+    console.log(this.props);
     const user = this.state.user;
     return this.state.badRequest ? (
-      <Redirect to="/400" />
+      <Redirect to="/401" />
     ) : (
       <div className="user-card" key={user._id}>
         <div className="user-card-container">
@@ -22,7 +23,7 @@ class User extends Component {
           <p className="username-font">{user.username}</p>
         </div>
         <div className="user-articles">
-          <Articles username={this.props.username} />
+          {/* <Articles username={this.props.match.params.username} /> */}
         </div>
       </div>
     );
