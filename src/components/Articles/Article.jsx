@@ -29,7 +29,7 @@ class Article extends Component {
           - {moment(moment(article.created_at)).fromNow()}
         </p>
         <p className="article-vote">Votes: {article.votes}</p>
-        <Votes votes={article.votes} articleId={article._id} />
+        <Votes article={article} handleVoteClick={this.handleVoteClick} />
       </div>
     );
   }
@@ -53,6 +53,24 @@ class Article extends Component {
           err404: true
         });
       });
+  };
+
+  handleVoteClick = (direction) => {
+    const { article } = this.state;
+    let voteCount = article.votes;
+    api.voteOnArticle(article._id, direction).then((res) => {
+      if (direction === "up") {
+        voteCount++;
+      } else {
+        voteCount--;
+      }
+      this.setState({
+        article: {
+          ...this.state.article,
+          votes: voteCount
+        }
+      });
+    });
   };
 }
 

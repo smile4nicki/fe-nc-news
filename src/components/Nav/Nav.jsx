@@ -45,7 +45,7 @@ class Nav extends Component {
           {!this.props.activeUser.username ? (
             <Login handleActiveUser={this.props.handleActiveUser} />
           ) : (
-            <Logout activeUser={this.props.activeUser} />
+            <Logout handleLogOutClick={this.props.handleLogOutClick} />
           )}
         </React.Fragment>
       </div>
@@ -74,7 +74,8 @@ class Nav extends Component {
 }
 
 Nav.propTypes = {
-  componentDidMount: propTypes.func
+  err404: propTypes.bool,
+  handleActiveUser: propTypes.func
 };
 
 export default Nav;

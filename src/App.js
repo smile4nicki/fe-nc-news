@@ -22,6 +22,7 @@ class App extends Component {
           <Nav
             handleActiveUser={this.handleActiveUser}
             activeUser={this.state.activeUser}
+            handleLogOutClick={this.handleLogOutClick}
           />
           <Route exact path="/" component={Articles} />
           <Route exact path="/users" component={Users} />
@@ -44,6 +45,12 @@ class App extends Component {
   handleActiveUser = (user) => {
     this.setState({
       activeUser: user
+    });
+  };
+
+  handleLogOutClick = () => {
+    this.setState({
+      activeUser: {}
     });
   };
 }

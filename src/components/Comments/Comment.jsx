@@ -9,11 +9,12 @@ import Votes from "../Votes/Votes.jsx";
 
 class Comment extends Component {
   state = {
+    comment: {},
     badRequest: false
   };
 
   render() {
-    const comment = this.props;
+    const comment = this.state.comment;
     return this.state.badRequest ? (
       <Redirect to="/400" />
     ) : (
@@ -26,7 +27,7 @@ class Comment extends Component {
           - {moment(moment(this.props.created_at)).fromNow()}
         </p>
         <p className="comments-votes">Votes: {comment.votes}</p>
-        <Votes votes={comment.votes} commentId={comment.commentId} />
+        <Votes votes={comment} handleVoteClick={this.handleVoteClick} />
         <button
           className="comment-delete-button"
           onClick={() => this.handleCommentDeleteClick(comment.commentId)}
@@ -37,6 +38,16 @@ class Comment extends Component {
     );
   }
 
+  componentDidMount = async () => {
+    this.handleComment();
+  };
+
+  handleComment = () => {
+    this.setState({
+      comment: this.props
+    });
+  };
+
   handleCommentDeleteClick = async (commentId) => {
     await api.deleteComment(commentId);
     const newComments = this.state.comments.filter((comment) => {
@@ -46,10 +57,29 @@ class Comment extends Component {
       comments: newComments
     });
   };
+
+  handleVoteClick = (direction) => {
+    const { comment } = this.state;
+    let voteCount = comment.votes;
+    api.voteOnComment(comment.commentId, direction).then((res) => {
+      if (direction === "up") {
+        voteCount++;
+      } else {
+        voteCount--;
+      }
+      this.setState({
+        comment: {
+          ...this.state.comment,
+          votes: voteCount
+        }
+      });
+    });
+  };
 }
 
 Comment.propTypes = {
-  badRequest: propTypes.bool
+  badRequest: propTypes.bool,
+  handleCommentDeleteClick: propTypes.func
 };
 
 export default Comment;

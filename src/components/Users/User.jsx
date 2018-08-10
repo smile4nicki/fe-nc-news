@@ -3,7 +3,7 @@ import "../Users/User.css";
 import * as api from "../api";
 import Articles from "../Articles/Articles.jsx";
 import { Redirect } from "react-router-dom";
-// import propTypes from "prop-types";
+import propTypes from "prop-types";
 
 class User extends Component {
   state = {
@@ -50,9 +50,10 @@ class User extends Component {
   };
 }
 
-// User.propTypes = {
-//   handleVoteArticleClick: propTypes.func,
-//   badRequest: propTypes.bool
-// };
+User.propTypes = {
+  handleVoteArticleClick: propTypes.func,
+  username: propTypes.string,
+  badRequest: propTypes.bool
+};
 
 export default User;

@@ -6,7 +6,6 @@ import * as api from "../api";
 import { Redirect } from "react-router-dom";
 import propTypes from "prop-types";
 import Comment from "../Comments/Comment.jsx";
-// import Users from "../Users/Users.jsx";
 
 class Comments extends Component {
   state = {
@@ -32,7 +31,7 @@ class Comments extends Component {
               type="submit"
               value="submit"
               className="comment-submit-button"
-              onClick={this.handleCommentSubmitClick}
+              onClick={this.handleNewCommentSubmitClick}
             />
           </form>
         </React.Fragment>
@@ -84,12 +83,12 @@ class Comments extends Component {
     });
   };
 
-  handleCommentSubmitClick = async (event) => {
+  handleNewCommentSubmitClick = async (event) => {
     const articleId = this.props.match.params.article_id;
     event.preventDefault();
     let comment = {
       body: this.state.newComment,
-      created_by: this.props.activeUser.username
+      created_by: this.props.activeUser._id
     };
     this.setState({
       comments: [...this.state.comments, comment]
@@ -103,8 +102,7 @@ class Comments extends Component {
 }
 
 Comments.propTypes = {
-  fetchCommentsByArticleIds: propTypes.func,
-  handleCommentClick: propTypes.func,
+  handleCommentSubmitClick: propTypes.func,
   badRequest: propTypes.bool
 };
 

@@ -2,7 +2,7 @@ import React, { Component } from "react";
 import "./Login.css";
 import { Redirect } from "react-router-dom";
 import * as api from "../api";
-// import propTypes from "prop-types";
+import propTypes from "prop-types";
 
 class Login extends Component {
   state = {
@@ -55,5 +55,10 @@ class Login extends Component {
       });
   };
 }
+
+Login.propTypes = {
+  err404: propTypes.bool,
+  handleActiveUser: propTypes.func
+};
 
 export default Login;
