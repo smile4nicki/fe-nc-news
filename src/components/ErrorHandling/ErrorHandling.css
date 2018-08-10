@@ -1,0 +1,13 @@
+.error-handling {
+  background-color: #da2c43;
+  max-width: 50%;
+  max-height: 50%;
+  border-radius: 1em;
+  padding: 5em;
+  margin: 8em auto 6em auto;
+}
+
+.error-message {
+  text-align: center;
+  font-family: "Cantata One", serif;
+}

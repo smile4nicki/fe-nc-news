@@ -4,6 +4,7 @@ import * as api from "../api";
 import { Redirect, Link } from "react-router-dom";
 import propTypes from "prop-types";
 import moment from "moment";
+import Votes from "../Votes/Votes.jsx";
 
 class Article extends Component {
   state = {
@@ -14,9 +15,9 @@ class Article extends Component {
   render() {
     const article = this.state.article;
     return this.state.badRequest ? (
-      <Redirect to="/400" />
+      <Redirect to={{ pathname: "/400", state: { from: "articles" } }} />
     ) : !this.state.article.created_by ? (
-      <p>Loading</p>
+      <p> Loading...</p>
     ) : (
       <div className="article-card" key={article._id}>
         <p className="article-title">{article.title}</p>
@@ -28,22 +29,7 @@ class Article extends Component {
           - {moment(moment(article.created_at)).fromNow()}
         </p>
         <p className="article-vote">Votes: {article.votes}</p>
-        <button
-          ref="btnArticleUp"
-          className="vote-up"
-          label="up"
-          onClick={() => this.handleVoteArticleClick("up")}
-        >
-          <i className="far fa-smile" />
-        </button>
-        <button
-          ref="btnArticleDown"
-          className="vote-down"
-          label="down"
-          onClick={() => this.handleVoteArticleClick("down")}
-        >
-          <i className="far fa-angry" />
-        </button>
+        <Votes article={article} handleVoteClick={this.handleVoteClick} />
       </div>
     );
   }
@@ -69,11 +55,9 @@ class Article extends Component {
       });
   };
 
-  handleVoteArticleClick = (direction) => {
+  handleVoteClick = (direction) => {
     const { article } = this.state;
-    this.refs.btnArticleUp.setAttribute("disabled", "disabled");
-    this.refs.btnArticleDown.setAttribute("disabled", "disabled");
-    let voteCount = this.state.article.votes;
+    let voteCount = article.votes;
     api.voteOnArticle(article._id, direction).then((res) => {
       if (direction === "up") {
         voteCount++;
@@ -91,8 +75,8 @@ class Article extends Component {
 }
 
 Article.propTypes = {
-  handleVoteArticleClick: propTypes.func,
-  badRequest: propTypes.bool
+  badRequest: propTypes.bool,
+  articleId: propTypes.string
 };
 
 export default Article;

@@ -1,0 +1,49 @@
+.logout-btn {
+  position: absolute;
+  right: 0;
+  top: 130px;
+  background-color: #222;
+  color: white;
+  padding: 16px;
+  font-size: 20px;
+  border: none;
+  cursor: pointer;
+}
+
+.logged-in-user {
+  position: relative;
+  right: 0;
+  color: #da2c43;
+  margin: auto 1em;
+}
+
+.login-container {
+  position: absolute;
+  right: 0px;
+  top: 100px;
+}
+
+.input-box {
+  width: 50%;
+  padding: 12px 20px;
+  margin: 8px 0;
+  display: inline-block;
+  border: 1px solid #ccc;
+  box-sizing: border-box;
+  border-radius: 0.5em;
+}
+
+.login-btn {
+  background-color: black;
+  color: white;
+  padding: 14px 20px;
+  margin: 8px 0;
+  border: none;
+  cursor: pointer;
+  width: auto;
+  border-radius: 0.5em;
+}
+
+.login-btn {
+  opacity: 0.8;
+}

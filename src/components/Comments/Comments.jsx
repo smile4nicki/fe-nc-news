@@ -3,8 +3,9 @@ import "../Articles/Articles.css";
 import "../Comments/Comments.css";
 import moment from "moment";
 import * as api from "../api";
-import { Redirect, Link } from "react-router-dom";
+import { Redirect } from "react-router-dom";
 import propTypes from "prop-types";
+import Comment from "../Comments/Comment.jsx";
 
 class Comments extends Component {
   state = {
@@ -14,7 +15,7 @@ class Comments extends Component {
   };
   render() {
     return this.state.badRequest ? (
-      <Redirect to="/400" />
+      <Redirect to={{ pathname: "/400", state: { from: "comments posted" } }} />
     ) : (
       <div>
         <React.Fragment>
@@ -30,46 +31,23 @@ class Comments extends Component {
               type="submit"
               value="submit"
               className="comment-submit-button"
-              onClick={this.handleCommentSubmitClick}
+              onClick={this.handleNewCommentSubmitClick}
             />
           </form>
         </React.Fragment>
-
         {this.state.comments.map((comment) => {
-          return (
+          return !comment.created_by ? (
+            <p> Loading...</p>
+          ) : (
             <div className="comments-card" key={comment._id}>
-              <div className="comments-card-container">
-                <p className="comments-body">{comment.body}</p>
-                <p className="article-username">
-                  <Link to={`/users/${comment.created_by.username}`}>
-                    {comment.created_by.username}
-                  </Link>
-                  - {moment(comment.created_at).fromNow()}
-                </p>
-                <p className="comments-votes">Votes: {comment.votes}</p>
-                <button
-                  ref="btnCommentUp"
-                  className="vote-up"
-                  label="up"
-                  onClick={() => this.handleVoteCommentClick("up", comment)}
-                >
-                  <i className="far fa-smile" />
-                </button>
-                <button
-                  ref="btnCommentDown"
-                  className="vote-down"
-                  label="down"
-                  onClick={() => this.handleVoteCommentClick("down", comment)}
-                >
-                  <i className="far fa-angry" />
-                </button>
-                <button
-                  className="comment-delete-button"
-                  onClick={() => this.handleCommentDeleteClick(comment._id)}
-                >
-                  Delete
-                </button>
-              </div>
+              <Comment
+                commentId={comment._id}
+                commentBody={comment.body}
+                commentUsername={comment.created_by.username}
+                created_at={comment.created_at}
+                votes={comment.votes}
+                handleCommentDeleteClick={this.handleCommentDeleteClick}
+              />
             </div>
           );
         })}
@@ -81,6 +59,7 @@ class Comments extends Component {
     this.fetchCommentsByArticleId();
   };
 
+  //comments sorted by date - most recent at the top
   fetchCommentsByArticleId = async () => {
     const articleId = this.props.match.params.article_id;
     await api
@@ -88,11 +67,10 @@ class Comments extends Component {
       .then((res) => {
         const comment = res.data.comment;
         const topComments = [...comment].sort((a, b) => {
-          return b.votes - a.votes;
+          return moment(b.created_at) - moment(a.created_at);
         });
         this.setState({
-          comments: topComments,
-          votes: comment.votes
+          comments: topComments
         });
       })
       .catch((err) => {
@@ -102,36 +80,18 @@ class Comments extends Component {
       });
   };
 
-  handleVoteCommentClick = (direction, commentToVote) => {
-    this.refs.btnCommentUp.setAttribute("disabled", "disabled");
-    this.refs.btnCommentDown.setAttribute("disabled", "disabled");
-    api.voteOnComment(commentToVote._id, direction);
-    const voteChange = direction === "up" ? 1 : -1;
-    const updatedComments = this.state.comments.map((comment) => {
-      console.log(comment);
-      if (comment === commentToVote) {
-        return {
-          ...comment,
-          votes: comment.votes + voteChange
-        };
-      }
-      return comment;
-    });
-    this.setState({ comments: updatedComments });
-  };
-
   handleCommentChange = (event) => {
     this.setState({
       newComment: event.target.value
     });
   };
 
-  handleCommentSubmitClick = async (event) => {
+  handleNewCommentSubmitClick = async (event) => {
     const articleId = this.props.match.params.article_id;
     event.preventDefault();
     let comment = {
       body: this.state.newComment,
-      created_by: "5b48464154670a3395b00d1d" //dont hard code this will come from active user!
+      created_by: this.props.activeUser._id
     };
     this.setState({
       comments: [...this.state.comments, comment]
@@ -142,9 +102,8 @@ class Comments extends Component {
       });
     });
   };
-
-  handleCommentDeleteClick = async (commentId) => {
-    await api.deleteComment(commentId);
+  handleCommentDeleteClick = (commentId) => {
+    api.deleteComment(commentId);
     const newComments = this.state.comments.filter((comment) => {
       return comment._id !== commentId;
     });
@@ -155,10 +114,7 @@ class Comments extends Component {
 }
 
 Comments.propTypes = {
-  handleVoteCommentClick: propTypes.func,
-  fetchCommentsByArticleIds: propTypes.func,
-  handleCommentClick: propTypes.func,
-  handleCommentDelete: propTypes.func,
+  handleCommentSubmitClick: propTypes.func,
   badRequest: propTypes.bool
 };
 

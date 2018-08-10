@@ -11,7 +11,6 @@ class Users extends Component {
   };
 
   render() {
-    console.log(this);
     return this.state.err404 ? (
       <Redirect to="/404" />
     ) : (
@@ -29,7 +28,6 @@ class Users extends Component {
                     alt="avatar"
                   />
                   <p className="username-font">{user.username}</p>
-                  <p className="name-font">{user.name}</p>
                 </div>
               </div>
             </Link>

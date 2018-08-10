@@ -4,16 +4,19 @@ import { Redirect, Link } from "react-router-dom";
 import logo from "../logo.png";
 import * as api from "../api";
 import propTypes from "prop-types";
+import Login from "./Login";
+import Logout from "./Logout";
 
 class Nav extends Component {
   state = {
+    activeUser: {},
     topics: [],
     err404: false
   };
 
   render() {
     return this.state.err404 ? (
-      <Redirect to="/404" />
+      <Redirect to={{ pathname: "/404", state: { from: "main page" } }} />
     ) : (
       <div className="nav-card">
         <Link to="/">
@@ -36,18 +39,16 @@ class Nav extends Component {
               );
             })}
           </div>
-          <button className="login-btn">Login</button>
-          {/* <div className="dropdown-content">
-            <Users 
-              <Link to={`/users/${user.username}`}>
-                <ul>
-                  <li className="list-item">{user.userame}</li>
-                </ul>
-              </Link>;
-            })} */}
         </div>
+        <React.Fragment>
+          <p className="logged-in-user">{this.props.activeUser.username}</p>
+          {!this.props.activeUser.username ? (
+            <Login handleActiveUser={this.props.handleActiveUser} />
+          ) : (
+            <Logout handleLogOutClick={this.props.handleLogOutClick} />
+          )}
+        </React.Fragment>
       </div>
-      // </div>
     );
   }
 
@@ -70,17 +71,11 @@ class Nav extends Component {
         });
       });
   };
-
-  handleLogoutClick = (event) => {
-    event.preventDefault();
-    api.logout({ userName: this.state.newUserName }).then((activeUser) => {
-      this.props.handleLogOut(activeUser);
-    });
-  };
 }
 
 Nav.propTypes = {
-  componentDidMount: propTypes.func
+  err404: propTypes.bool,
+  handleActiveUser: propTypes.func
 };
 
 export default Nav;

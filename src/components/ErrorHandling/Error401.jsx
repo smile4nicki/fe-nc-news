@@ -3,9 +3,10 @@ import { Link } from "react-router-dom";
 
 const Error401 = () => {
   return (
-    <div className="content box error">
+    <div className="login-input-error">
       <h2>
-        User not found! Please try again at the<Link to="/users">login</Link>
+        User not found! Please choose one of the following names and login
+        <Link to="/users">Users</Link>
         page
       </h2>
     </div>

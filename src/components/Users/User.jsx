@@ -1,9 +1,9 @@
 import React, { Component } from "react";
 import "../Users/User.css";
 import * as api from "../api";
-import Comments from "../Comments/Comments.jsx";
+// import Articles from "../Articles/Articles.jsx";
 import { Redirect } from "react-router-dom";
-// import propTypes from "prop-types";
+import propTypes from "prop-types";
 
 class User extends Component {
   state = {
@@ -14,13 +14,15 @@ class User extends Component {
   render() {
     const user = this.state.user;
     return this.state.badRequest ? (
-      <Redirect to="/400" />
+      <Redirect to={{ pathname: "/401", state: { from: "article" } }} />
     ) : (
       <div className="user-card" key={user._id}>
         <div className="user-card-container">
           <img src={user.avatar_url} className="user-avatar" alt="avatar" />
           <p className="username-font">{user.username}</p>
-          <p className="name-font">{user.name}</p>
+        </div>
+        <div className="user-articles">
+          {/* <Articles username={this.props.match.params.username} /> */}
         </div>
       </div>
     );
@@ -48,9 +50,10 @@ class User extends Component {
   };
 }
 
-// User.propTypes = {
-//   handleVoteArticleClick: propTypes.func,
-//   badRequest: propTypes.bool
-// };
+User.propTypes = {
+  handleVoteArticleClick: propTypes.func,
+  username: propTypes.string,
+  badRequest: propTypes.bool
+};
 
 export default User;

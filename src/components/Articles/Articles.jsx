@@ -14,7 +14,7 @@ class Articles extends Component {
 
   render() {
     return this.state.err404 ? (
-      <Redirect to="/404" />
+      <Redirect to={{ pathname: "/400", state: { from: "articles" } }} />
     ) : (
       <div>
         {this.state.articles.map((article) => {
@@ -29,7 +29,8 @@ class Articles extends Component {
                     {moment(moment(article.created_at)).fromNow()}
                   </p>
                   <p className="article-comments">
-                    Comments({article.comments})
+                    Comments(
+                    {article.comments})
                   </p>
                 </Link>
                 <p className="article-vote">Votes: {article.votes}</p>
@@ -92,7 +93,7 @@ class Articles extends Component {
 }
 
 Articles.propTypes = {
-  componentDidMount: propTypes.func
+  topicId: propTypes.string
 };
 
 export default Articles;
