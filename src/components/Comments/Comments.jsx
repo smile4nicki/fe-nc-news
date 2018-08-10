@@ -46,6 +46,7 @@ class Comments extends Component {
                 commentUsername={comment.created_by.username}
                 created_at={comment.created_at}
                 votes={comment.votes}
+                handleCommentDeleteClick={this.handleCommentDeleteClick}
               />
             </div>
           );
@@ -99,6 +100,15 @@ class Comments extends Component {
       this.setState({
         badRequest: true
       });
+    });
+  };
+  handleCommentDeleteClick = (commentId) => {
+    api.deleteComment(commentId);
+    const newComments = this.state.comments.filter((comment) => {
+      return comment._id !== commentId;
+    });
+    this.setState({
+      comments: newComments
     });
   };
 }

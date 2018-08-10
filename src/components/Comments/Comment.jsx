@@ -13,6 +13,7 @@ class Comment extends Component {
   };
 
   render() {
+    console.log(this.props);
     const comment = this.state.comment;
     return this.state.badRequest ? (
       <Redirect to={{ pathname: "/400", state: { from: "comments" } }} />
@@ -29,7 +30,7 @@ class Comment extends Component {
         <Votes votes={comment} handleVoteClick={this.handleVoteClick} />
         <button
           className="comment-delete-button"
-          onClick={() => this.handleCommentDeleteClick(comment.commentId)}
+          onClick={() => this.props.handleCommentDeleteClick(comment.commentId)}
         >
           Delete
         </button>
@@ -44,16 +45,6 @@ class Comment extends Component {
   handleComment = () => {
     this.setState({
       comment: this.props
-    });
-  };
-
-  handleCommentDeleteClick = async (commentId) => {
-    await api.deleteComment(commentId);
-    const newComments = this.state.comments.filter((comment) => {
-      return comment._id !== commentId;
-    });
-    this.setState({
-      comments: newComments
     });
   };
 
