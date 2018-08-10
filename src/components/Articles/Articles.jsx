@@ -14,7 +14,7 @@ class Articles extends Component {
 
   render() {
     return this.state.err404 ? (
-      <Redirect to="/404" />
+      <Redirect to={{ pathname: "/400", state: { from: "articles" } }} />
     ) : (
       <div>
         {this.state.articles.map((article) => {

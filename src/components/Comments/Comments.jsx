@@ -15,7 +15,7 @@ class Comments extends Component {
   };
   render() {
     return this.state.badRequest ? (
-      <Redirect to="/400" />
+      <Redirect to={{ pathname: "/400", state: { from: "comments posted" } }} />
     ) : (
       <div>
         <React.Fragment>
@@ -36,7 +36,9 @@ class Comments extends Component {
           </form>
         </React.Fragment>
         {this.state.comments.map((comment) => {
-          return (
+          return !comment.created_by ? (
+            <p> Loading...</p>
+          ) : (
             <div className="comments-card" key={comment._id}>
               <Comment
                 commentId={comment._id}

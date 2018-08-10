@@ -12,10 +12,9 @@ class User extends Component {
   };
 
   render() {
-    console.log(this.props);
     const user = this.state.user;
     return this.state.badRequest ? (
-      <Redirect to="/401" />
+      <Redirect to={{ pathname: "/401", state: { from: "article" } }} />
     ) : (
       <div className="user-card" key={user._id}>
         <div className="user-card-container">

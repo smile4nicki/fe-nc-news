@@ -5,7 +5,6 @@ import { Redirect, Link } from "react-router-dom";
 import propTypes from "prop-types";
 import moment from "moment";
 import Votes from "../Votes/Votes.jsx";
-// import User from "../Users/User.jsx";
 
 class Comment extends Component {
   state = {
@@ -16,7 +15,7 @@ class Comment extends Component {
   render() {
     const comment = this.state.comment;
     return this.state.badRequest ? (
-      <Redirect to="/400" />
+      <Redirect to={{ pathname: "/400", state: { from: "comments" } }} />
     ) : (
       <div className="comments-card" key={comment.commentId}>
         <p className="comments-body">{comment.commentBody}</p>

@@ -15,9 +15,9 @@ class Article extends Component {
   render() {
     const article = this.state.article;
     return this.state.badRequest ? (
-      <Redirect to="/400" />
+      <Redirect to={{ pathname: "/400", state: { from: "articles" } }} />
     ) : !this.state.article.created_by ? (
-      <p>Loading...</p>
+      <p> Loading...</p>
     ) : (
       <div className="article-card" key={article._id}>
         <p className="article-title">{article.title}</p>

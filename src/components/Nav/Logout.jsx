@@ -4,7 +4,6 @@ class Logout extends Component {
   render() {
     return (
       <div>
-        {console.log("hi!")}
         <button
           className="logout-btn"
           onClick={() => this.props.handleLogOutClick()}

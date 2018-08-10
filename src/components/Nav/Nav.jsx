@@ -16,7 +16,7 @@ class Nav extends Component {
 
   render() {
     return this.state.err404 ? (
-      <Redirect to="/404" />
+      <Redirect to={{ pathname: "/404", state: { from: "main page" } }} />
     ) : (
       <div className="nav-card">
         <Link to="/">
