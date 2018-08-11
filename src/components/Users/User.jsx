@@ -1,9 +1,9 @@
 import React, { Component } from "react";
 import "../Users/User.css";
 import * as api from "../api";
-// import Articles from "../Articles/Articles.jsx";
 import { Redirect } from "react-router-dom";
 import propTypes from "prop-types";
+import Articles from "../Articles/Articles.jsx";
 
 class User extends Component {
   state = {
@@ -21,13 +21,10 @@ class User extends Component {
           <img src={user.avatar_url} className="user-avatar" alt="avatar" />
           <p className="username-font">{user.username}</p>
         </div>
-        <div className="user-articles">
-          {/* <Articles username={this.props.match.params.username} /> */}
-        </div>
+        <Articles />
       </div>
     );
   }
-
   componentDidMount = async () => {
     this.fetchUsersByUsername();
   };

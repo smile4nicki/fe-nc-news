@@ -27,7 +27,12 @@ class App extends Component {
           <Route exact path="/" component={Articles} />
           <Route exact path="/users" component={Users} />
           <Route path="/users/:username" component={User} />
-          <Route exact path="/topics/:topic_id/articles" component={Articles} />
+          <Route
+            path="/topics/:topic_id/articles"
+            render={({ match }) => (
+              <Articles activeUser={this.state.activeUser} match={match} />
+            )}
+          />
           <Route path="/articles/:article_id" component={Article} />
           <Route
             path="/articles/:article_id"

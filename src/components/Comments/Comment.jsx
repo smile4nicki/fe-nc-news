@@ -9,14 +9,36 @@ import Votes from "../Votes/Votes.jsx";
 class Comment extends Component {
   state = {
     comment: {},
+    voted: false,
     badRequest: false
   };
 
   render() {
-    console.log(this.props);
     const comment = this.state.comment;
-    return this.state.badRequest ? (
-      <Redirect to={{ pathname: "/400", state: { from: "comments" } }} />
+    return !this.state.voted ? (
+      this.state.badRequest ? (
+        <Redirect to={{ pathname: "/400", state: { from: "comments" } }} />
+      ) : (
+        <div className="comments-card" key={comment.commentId}>
+          <p className="comments-body">{comment.commentBody}</p>
+          <p className="article-username">
+            <Link to={`/users/${comment.username}`}>
+              {comment.commentUsername}
+            </Link>
+            - {moment(moment(this.props.created_at)).fromNow()}
+          </p>
+          <p className="comments-votes">Votes: {comment.votes}</p>
+          <Votes votes={comment} handleVoteClick={this.handleVoteClick} />
+          <button
+            className="comment-delete-button"
+            onClick={() =>
+              this.props.handleCommentDeleteClick(comment.commentId)
+            }
+          >
+            Delete
+          </button>
+        </div>
+      )
     ) : (
       <div className="comments-card" key={comment.commentId}>
         <p className="comments-body">{comment.commentBody}</p>
@@ -27,7 +49,6 @@ class Comment extends Component {
           - {moment(moment(this.props.created_at)).fromNow()}
         </p>
         <p className="comments-votes">Votes: {comment.votes}</p>
-        <Votes votes={comment} handleVoteClick={this.handleVoteClick} />
         <button
           className="comment-delete-button"
           onClick={() => this.props.handleCommentDeleteClick(comment.commentId)}
@@ -61,7 +82,8 @@ class Comment extends Component {
         comment: {
           ...this.state.comment,
           votes: voteCount
-        }
+        },
+        voted: true
       });
     });
   };

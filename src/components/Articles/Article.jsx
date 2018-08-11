@@ -9,12 +9,32 @@ import Votes from "../Votes/Votes.jsx";
 class Article extends Component {
   state = {
     article: {},
+    voted: false,
     badRequest: false
   };
 
   render() {
     const article = this.state.article;
-    return this.state.badRequest ? (
+    return !this.state.voted ? (
+      this.state.badRequest ? (
+        <Redirect to={{ pathname: "/400", state: { from: "articles" } }} />
+      ) : !this.state.article.created_by ? (
+        <p> Loading...</p>
+      ) : (
+        <div className="article-card" key={article._id}>
+          <p className="article-title">{article.title}</p>
+          <p className="article-body">{article.body}</p>
+          <p className="article-username">
+            <Link to={`/users/${article.created_by.username}`}>
+              {article.created_by.username}
+            </Link>
+            - {moment(moment(article.created_at)).fromNow()}
+          </p>
+          <p className="article-vote">Votes: {article.votes}</p>
+          <Votes article={article} handleVoteClick={this.handleVoteClick} />
+        </div>
+      )
+    ) : this.state.badRequest ? (
       <Redirect to={{ pathname: "/400", state: { from: "articles" } }} />
     ) : !this.state.article.created_by ? (
       <p> Loading...</p>
@@ -29,7 +49,6 @@ class Article extends Component {
           - {moment(moment(article.created_at)).fromNow()}
         </p>
         <p className="article-vote">Votes: {article.votes}</p>
-        <Votes article={article} handleVoteClick={this.handleVoteClick} />
       </div>
     );
   }
@@ -68,7 +87,8 @@ class Article extends Component {
         article: {
           ...this.state.article,
           votes: voteCount
-        }
+        },
+        voted: true
       });
     });
   };

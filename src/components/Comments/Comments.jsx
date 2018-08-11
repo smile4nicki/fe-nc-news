@@ -102,6 +102,7 @@ class Comments extends Component {
       });
     });
   };
+
   handleCommentDeleteClick = (commentId) => {
     api.deleteComment(commentId);
     const newComments = this.state.comments.filter((comment) => {
