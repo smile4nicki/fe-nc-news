@@ -43,9 +43,11 @@ class Articles extends Component {
   }
 
   componentDidMount = async () => {
-    this.props.topicId
-      ? this.fetchArticlesByTopicId()
-      : this.fetchAllArticles();
+    this.props.username
+      ? this.fetchUserArticles()
+      : this.props.topicId
+        ? this.fetchArticlesByTopicId()
+        : this.fetchAllArticles();
   };
 
   componentDidUpdate = async (prevProps) => {
@@ -83,6 +85,24 @@ class Articles extends Component {
         this.setState({
           articles: articles
         });
+      })
+      .catch((err) => {
+        this.setState({
+          err404: true
+        });
+      });
+  };
+  fetchUserArticles = async () => {
+    console.log("hi!");
+    api
+      .getUserArticles(this.props.username)
+      .then(({ data }) => {
+        const usersArticle = data.articles.filter((article) => {
+          console.log(article.created_by.username);
+          console.log(this.props.username);
+          return article.created_by.username === this.props.username;
+        });
+        this.setState({ articles: usersArticle });
       })
       .catch((err) => {
         this.setState({

@@ -76,3 +76,9 @@ export const getUsersByUsername = (username) => {
     `https://nichola-northcoders-news.herokuapp.com/api/users/${username}`
   );
 };
+
+export const getUserArticles = () => {
+  return axios.get(
+    `https://nichola-northcoders-news.herokuapp.com/api/articles`
+  );
+};

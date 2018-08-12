@@ -21,7 +21,7 @@ class User extends Component {
           <img src={user.avatar_url} className="user-avatar" alt="avatar" />
           <p className="username-font">{user.username}</p>
         </div>
-        <Articles />
+        <Articles username={this.state.user.username} />
       </div>
     );
   }
