@@ -1,6 +1,6 @@
 # Nichola-Northcoders-News
 
-Northcoders News is a social news website, which gives you the ability to rate the articles provided and a chance to comment and vote on comments. It has articles which are divided into topics. It can be found at INSERT HERE! It has been tested to minumum 320 x 480 screen size and is fully responsive to a larger screen size.
+Northcoders News is a social news website, which gives you the ability to rate the articles provided and a chance to comment and vote on comments. It has articles which are divided into topics. It can be found at https://compassionate-archimedes-30183f.netlify.com/ It has been tested to minumum 320 x 480 screen size and is fully responsive to a larger screen size.
 
 ### Prerequisites
 

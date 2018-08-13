@@ -47,11 +47,30 @@ class App extends Component {
       </Router>
     );
   }
+
+  componentDidUpdate(prevProps, prevState) {
+    if (this.state.activeUser !== prevState.activeUser) {
+      if (this.state.activeUser) {
+        sessionStorage.setItem(
+          "activeUser",
+          JSON.stringify(this.state.activeUser)
+        );
+      } else {
+        sessionStorage.removeItem("activeUser");
+      }
+    }
+  }
+  componentDidMount() {
+    const activeUser = JSON.parse(sessionStorage.getItem("activeUser"));
+    if (activeUser) {
+      this.setState({ activeUser });
+    }
+  }
+
   handleActiveUser = (user) => {
     this.setState({
       activeUser: user
     });
-    localStorage.setItem("activeUser", "user");
   };
 
   handleLogOutClick = () => {

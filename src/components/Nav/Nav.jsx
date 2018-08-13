@@ -75,8 +75,7 @@ class Nav extends Component {
 
 Nav.propTypes = {
   err404: propTypes.bool,
-  handleActiveUser: propTypes.func,
-  activeUser: propTypes.obj
+  handleActiveUser: propTypes.func
 };
 
 export default Nav;
