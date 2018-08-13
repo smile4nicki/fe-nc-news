@@ -52,6 +52,11 @@ class Login extends Component {
       })
       .then((activeUser) => {
         this.props.handleActiveUser(activeUser);
+      })
+      .catch((err) => {
+        this.setState({
+          err404: true
+        });
       });
   };
 }

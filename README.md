@@ -1,6 +1,6 @@
 # Nichola-Northcoders-News
 
-Northcoders News is a social news website, which gives you the ability to rate the articles provided and a chance to comment and vote on comments. It has articles which are divided into topics. It can be found at INSERT HERE!
+Northcoders News is a social news website, which gives you the ability to rate the articles provided and a chance to comment and vote on comments. It has articles which are divided into topics. It can be found at INSERT HERE! It has been tested to minumum 320 x 480 screen size and is fully responsive to a larger screen size.
 
 ### Prerequisites
 
@@ -16,7 +16,7 @@ You will need to install:
     "react-router-dom": "^4.3.1",
 ```
 
-and type:
+using the npm i command in the command line and then and type:
 
 ```
 npm start
@@ -31,7 +31,8 @@ into the terminal to run localhost.
 
 ## Authors
 
-- **Nichola Ward** - _Initial work_ - [smile4nicki](https://github.com/smile4nicki)
+- **Northcoders** - _Initial work_ - (https://northcoders.com/)
+- **Nichola Ward** - [smile4nicki](https://github.com/smile4nicki)
 
 ## Acknowledgments
 

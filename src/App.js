@@ -51,6 +51,7 @@ class App extends Component {
     this.setState({
       activeUser: user
     });
+    localStorage.setItem("activeUser", "user");
   };
 
   handleLogOutClick = () => {

@@ -93,13 +93,10 @@ class Articles extends Component {
       });
   };
   fetchUserArticles = async () => {
-    console.log("hi!");
     api
       .getUserArticles(this.props.username)
       .then(({ data }) => {
         const usersArticle = data.articles.filter((article) => {
-          console.log(article.created_by.username);
-          console.log(this.props.username);
           return article.created_by.username === this.props.username;
         });
         this.setState({ articles: usersArticle });
